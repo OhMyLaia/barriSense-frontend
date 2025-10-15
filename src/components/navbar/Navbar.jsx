@@ -3,7 +3,7 @@ import MobileNavbar from "./MobileNavbar";
 import DesktopNavbar from "./DesktopNavbar";
 import logo from "../../assets/logo-blue.png";
 import { useAuth } from "../../modules/auth";
-import FeedbackModal from "../FeedbackModal";
+import FeedbackModal from "../FeedbackForm";
 
 function Navbar() {
   const [isTopMobile, setIsTopMobile] = useState(true);

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import hoods from "./services/hoods.json";
+import hoods from "../services/hoods.json";
 
 export default function HoodSelect({ onSelect }) {
     const [selectedHood, setSelectedHood] = useState({ id: "", name: "" });

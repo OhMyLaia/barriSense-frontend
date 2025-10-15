@@ -44,21 +44,7 @@ function MobileNavbar({ isTop, menuItems, logo }) {
             <li
               key={idx}
               className="relative p-2 bg-white active:shadow-none"
-              style={{
-                backgroundColor:
-                  path === "area-personal" ? primaryDeep : "white",
-              }}
             >
-              {path === "inscripcions" ? (
-                <a
-                  href="https://docs.google.com/forms/d/e/1FAIpQLSfzhuqyNITIBPof_PKsquB3rXCVcLyYj0WGYk1YAOTzq0U8rQ/viewform?usp=header"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex justify-center items-center text-center hover:text-white"
-                >
-                  Inscripcions
-                </a>
-              ) : (
                 <Link
                   to={`/${path}`}
                   className="flex justify-center items-center text-center hover:text-white"
@@ -66,7 +52,6 @@ function MobileNavbar({ isTop, menuItems, logo }) {
                 >
                   {path.replaceAll("-", " ")}
                 </Link>
-              )}
             </li>
           ))}
         </ul>

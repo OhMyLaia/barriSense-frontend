@@ -21,7 +21,7 @@ export default function FeedbackForm({ userId, onSubmit }) {
     };
 
     return (
-        <div className="feedback-form">
+        <div className="feedback-form max-w-full h-1/2">
             <h2>Give Feedback</h2>
             <form onSubmit={handleSubmit}>
                 <label>Choose a hood:</label>
