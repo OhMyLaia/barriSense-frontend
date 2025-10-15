@@ -1,6 +1,6 @@
 import axios from "axios";
 
-let API_BASE_URL = "";
+let API_BASE_URL = "http://localhost:8080/api";
 
 // API INSTANCE
 export const createApiInstance = (baseURL) => {
