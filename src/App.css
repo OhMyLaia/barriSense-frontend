@@ -1,55 +1,25 @@
 @import "tailwindcss";
-/* === BASIC RESET FOR REACT PROJECTS === */
+@import "tw-animate-css";
 
-/* 1. Use border-box for all elements */
+/* src/App.css */
+
+/* Tailwind base imports */
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* Reset global box sizing y scroll */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
-}
-
-/* 2. Remove default margin and padding */
-* {
   margin: 0;
   padding: 0;
 }
 
-/* 3. Set base defaults */
-html,
-body,
-#root {
-  height: 100%;
+html, body, #root {
   width: 100%;
-  overflow-x: hidden;
-}
-
-/* 4. Improve text rendering */
-body {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  line-height: 1.5;
-}
-
-/* 5. Make media elements responsive */
-img,
-video,
-canvas,
-svg {
-  display: block;
-  max-width: 100%;
-}
-
-/* 6. Inherit font for inputs and buttons */
-input,
-button,
-textarea,
-select {
-  font: inherit;
-}
-
-/* 7. Remove default button appearance */
-button {
-  background: none;
-  border: none;
-  cursor: pointer;
+  height: 100%;
+  overflow-x: hidden; /* Evita scroll horizontal */
+  overflow-y: auto;   /* Scroll vertical normal */
+  font-family: 'Inter', sans-serif; /* Ejemplo de font */
 }
