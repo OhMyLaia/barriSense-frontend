@@ -79,23 +79,38 @@ const MapQuejas = () => {
         <h4 className="font-semibold text-sm mb-2">Quejas por Distrito</h4>
         <div className="space-y-1 text-xs">
           <div className="flex items-center gap-2">
-            <div className="w-4 h-4" style={{ backgroundColor: "#D1D5DB" }}></div>
+            <div
+              className="w-4 h-4"
+              style={{ backgroundColor: "#22C55E" }}
+            ></div>
             <span>Sin quejas</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-4 h-4" style={{ backgroundColor: "#FEF08A" }}></div>
+            <div
+              className="w-4 h-4"
+              style={{ backgroundColor: "#FEF08A" }}
+            ></div>
             <span>1-2 quejas</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-4 h-4" style={{ backgroundColor: "#FACC15" }}></div>
+            <div
+              className="w-4 h-4"
+              style={{ backgroundColor: "#FACC15" }}
+            ></div>
             <span>3-4 quejas</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-4 h-4" style={{ backgroundColor: "#F97316" }}></div>
+            <div
+              className="w-4 h-4"
+              style={{ backgroundColor: "#F97316" }}
+            ></div>
             <span>5-6 quejas</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-4 h-4" style={{ backgroundColor: "#DC2626" }}></div>
+            <div
+              className="w-4 h-4"
+              style={{ backgroundColor: "#DC2626" }}
+            ></div>
             <span>7+ quejas</span>
           </div>
         </div>
