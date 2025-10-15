@@ -1,12 +1,73 @@
-# React + Vite
+# BarriSense Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aquest projecte és la interfície frontend de barriSense, una aplicació pensada per monitoritzar i visualitzar dades relacionades amb barris.
 
-Currently, two official plugins are available:
+## Requisits previs
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Abans d’instal·lar i executar el projecte en local, assegura’t de tenir instal·lat al teu equip:
 
-## Expanding the ESLint configuration
+- **Node.js** (versió recomanada: 16.x o superior)
+- **npm** o **yarn**
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Instal·lació
+
+Clona el repositori
+
+```sh
+git clone https://github.com/OhMyLaia/barriSense-frontend.git
+cd barriSense-frontend
+```
+
+Instal·la les dependències
+
+Amb **npm**:
+
+```sh
+npm install
+```
+
+O amb **yarn**:
+
+```sh
+yarn install
+```
+
+## 🔑 Configuració del fitxer .env
+
+Per executar aquest projecte localment, has de configurar les variables d’entorn. Segueix aquests passos:
+
+Necessitaràs:
+- Una clau de Mapbox. Pots obtenir la teva a la [pàgina oficial de Mapbox](https://www.mapbox.com/)
+
+## Executa el projecte en mode desenvolupament
+
+Amb **npm**:
+
+```sh
+npm start
+```
+
+O amb **yarn**:
+
+```sh
+yarn start
+```
+
+El servidor local normalment estarà disponible a [http://localhost:3000](http://localhost:3000) o el port que indiqui la consola.
+
+## Scripts comuns
+
+- `npm start` / `yarn start`: Inicia l’aplicació en mode desenvolupament.
+- `npm run build` / `yarn build`: Genera una versió optimitzada per a producció.
+- `npm test` / `yarn test`: Executa els tests (si estan configurats).
+
+## Estructura del projecte
+
+```
+barriSense-frontend/
+├── public/
+├── src/
+├── package.json
+├── README.md
+└── ...
+```
