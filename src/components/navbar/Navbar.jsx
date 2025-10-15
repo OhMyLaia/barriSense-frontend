@@ -10,7 +10,7 @@ function Navbar() {
 
   const { user } = useAuth();
 
-  const menuItems = ["Afageix Queixa", "Contacta'ns", "Home"];
+  const menuItems = ["Afegeix Queixa", "Contacta'ns", "Home"];
   if (user) menuItems.push("area-personal");
 
   useEffect(() => {

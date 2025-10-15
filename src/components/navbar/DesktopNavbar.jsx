@@ -23,16 +23,6 @@ function DesktopNavbar({ isTop, menuItems, logo }) {
                 className="basis-0 rounded-sm flex-1 hover:shadow-custom active:text-shadow-none active:shadow-none relative"
                 style={{ color: "black" }}
               >
-                {path === "inscripcions" ? (
-                  <a
-                    href="https://docs.google.com/forms/d/e/1FAIpQLSfzhuqyNITIBPof_PKsquB3rXCVcLyYj0WGYk1YAOTzq0U8rQ/viewform?usp=header"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full h-full flex items-center text-center px-2 whitespace-nowrap p-4"
-                  >
-                    Inscripcions
-                  </a>
-                ) : (
                   <Link
                     to={`/${path}`}
                     className="w-full h-full rounded-sm flex items-center text-center px-2 whitespace-nowrap p-4"
@@ -42,7 +32,6 @@ function DesktopNavbar({ isTop, menuItems, logo }) {
                   >
                     {capitalizeWords(path.replaceAll("-", " "))}
                   </Link>
-                )}
               </li>
             ))}
           </ul>
