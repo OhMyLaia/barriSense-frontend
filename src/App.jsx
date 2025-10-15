@@ -6,6 +6,8 @@ import { Footer } from "./components/Footer";
 import ButtonGroup from "./components/ButtonGroup";
 import ScrollToHash from "./components/ScrollToHash";
 import { Login, UpdatePassword, useAuth } from "./modules/auth";
+import HomePage from "./pages/HomePage";
+import FeedbackPage from "./pages/FeedbackPage";
 
 export default function App() {
   const { user } = useAuth();
@@ -20,7 +22,8 @@ export default function App() {
         <main className="flex-grow">
           <ScrollToHash />
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<FeedbackPage />} />
             <Route path="/contacte" element={<ContactForm />} />
             <Route path="/update-password" element={<UpdatePassword />} />
           </Routes>
