@@ -7,7 +7,7 @@ import mapboxgl from "mapbox-gl";
  * @param {object} map - Mapbox map instance
  * @param {object} feature - A GeoJSON Feature object (with geometry + properties)
  */
-export function addShapeLayer(map, feature) {
+export function addShapeLayer(map, feature, onDistrictClick) {
   if (!map || !feature || !feature.geometry) {
     console.error("❌ Invalid map or feature object");
     return;
@@ -73,7 +73,7 @@ export function addShapeLayer(map, feature) {
 
     // Copy coordinates and show popup
     const coordinates = e.lngLat;
-    
+
     popup
       .setLngLat(coordinates)
       .setHTML(
@@ -97,5 +97,19 @@ export function addShapeLayer(map, feature) {
     popup.remove();
   });
 
+  // Add click event
+  map.on("click", `${id}-fill`, (e) => {
+    const props = e.features?.[0]?.properties;
+    if (!props || !onDistrictClick) return;
+
+    console.log("🔍 District clicked:", props); // Add this debug log
+
+    // Call the callback function with district data
+    onDistrictClick({
+      neighborhoodName: props.nom_barri || "Zona Desconocida",
+      neighborhoodId: props.codi_barri || "Id desconocido",
+      feedbackCount: props.feedBackNum || 0,
+    });
+  });
   console.info(`✅ Added layer for ${properties?.nom_barri || id}`);
 }

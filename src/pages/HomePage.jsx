@@ -2,7 +2,7 @@ import MapPage from "../components/MapPage";
 
 function HomePage() {
   return (
-    <div>
+    <div className="mt-20">
       <MapPage />
     </div>
   );

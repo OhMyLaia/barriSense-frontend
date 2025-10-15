@@ -1,13 +1,55 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import feedbacks from "../../services/geojson.json";
 import { addShapeLayer } from "./helpers/addShapeLayer";
 import { addFeedbackToHoods } from "./helpers/addFeedBackToHoods";
+import FeedbackList from "../FeedbackList";
 
 const MapQuejas = () => {
   const mapContainerRef = useRef(null);
   const mapRef = useRef(null);
+  const [selectedDistrict, setSelectedDistrict] = useState(null);
+  const [districtFeedbacks, setDistrictFeedbacks] = useState([]);
+
+  // Mock function to get feedbacks for a district
+  const getFeedbacksForDistrict = (districtCode) => {
+    // Aquí podrías hacer una llamada a tu API real
+    // Por ahora, generamos datos de ejemplo
+    const mockFeedbacks = [];
+    const feedbackCount = Math.floor(Math.random() * 5) + 1;
+    
+    for (let i = 0; i < feedbackCount; i++) {
+      mockFeedbacks.push({
+        id: `${districtCode}-${i}`,
+        content: `Queja ${i + 1} del distrito ${districtCode}: ${getRandomComplaint()}`,
+        date: new Date().toLocaleDateString(),
+        status: "pending"
+      });
+    }
+    
+    return mockFeedbacks;
+  };
+
+  const getRandomComplaint = () => {
+    const complaints = [
+      "Ruido excesivo en las noches",
+      "Basura acumulada en las calles",
+      "Falta de iluminación pública",
+      "Problemas con el transporte público",
+      "Espacios verdes en mal estado",
+      "Tráfico intenso en horas pico"
+    ];
+    return complaints[Math.floor(Math.random() * complaints.length)];
+  };
+
+  const handleDistrictClick = (districtData) => {
+    setSelectedDistrict(districtData);
+    // Obtener feedbacks para este distrito
+    const feedbacks = getFeedbacksForDistrict(districtData.districtCode);
+    setDistrictFeedbacks(feedbacks);
+  };
+  
 
   useEffect(() => {
     if (!mapContainerRef.current) return;
@@ -25,7 +67,7 @@ const MapQuejas = () => {
 
     map.on("load", () => {
       feedbacksWithFeedbacks.features.forEach((feature) =>
-        addShapeLayer(map, feature)
+        addShapeLayer(map, feature, handleDistrictClick)
       );
     });
 
@@ -38,7 +80,7 @@ const MapQuejas = () => {
       <div ref={mapContainerRef} style={{ width: "100%", height: "500px" }} />
 
       {/* Legend */}
-      <div className="absolute top-4 right-4 bg-white p-3 rounded-lg shadow-md">
+      <div className="absolute top-4 right-4 bg-white p-3 rounded-lg shadow-md mt-30">
         <h4 className="font-semibold text-sm mb-2">Quejas por Distrito</h4>
         <div className="space-y-1 text-xs">
           <div className="flex items-center gap-2">
@@ -63,6 +105,26 @@ const MapQuejas = () => {
           </div>
         </div>
       </div>
+      {selectedDistrict && (
+        <div className="mt-6 bg-white border-t border-gray-200 p-4">
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-lg font-semibold">
+              Quejas del distrito: {selectedDistrict.neighborhoodName}
+            </h3>
+            <button
+              onClick={() => setSelectedDistrict(null)}
+              className="text-gray-500 hover:text-gray-700"
+            >
+              ✕ Cerrar
+            </button>
+          </div>
+          <FeedbackList
+            neighborhoodName={selectedDistrict.neighborhoodName}
+            feedback={districtFeedbacks}
+          />
+        </div>
+      )}
+      
     </div>
   );
 };

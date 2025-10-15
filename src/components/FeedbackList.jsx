@@ -10,7 +10,7 @@ const FeedbackList = ({ neighborhoodName, feedback }) => {
           <p className="no-feedback">No hay quejas registradas para este barrio.</p>
         ) : (
           <ul className="feedback-list">
-            {feedback.map((complaint) => (
+            {feedback.slice(0, 20).map((complaint) => (
               <li key={complaint.id} className="complaint-item">
                 <p className="complaint-content">{complaint.content}</p>
               </li>
