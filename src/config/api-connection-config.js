@@ -6,11 +6,6 @@ let API_BASE_URL = "http://localhost:8080/api";
 export const createApiInstance = (baseURL) => {
   return axios.create({
     baseURL,
-    timeout: 3000,
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
   });
 };
 

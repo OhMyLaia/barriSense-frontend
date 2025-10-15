@@ -15,9 +15,9 @@ export default function App() {
     <Router>
       <div className="flex flex-col min-h-screen">
         <Navbar />
-        <ButtonGroup>
+        {/* <ButtonGroup>
           <Login />
-        </ButtonGroup>
+        </ButtonGroup> */}
         <main className="flex-grow">
           <ScrollToHash />
           <Routes>

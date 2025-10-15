@@ -12,17 +12,22 @@ export const useMappedFeedbacks = () => {
       try {
         setLoading(true);
         setError(null);
-        
-        const url = '/feedbacks/count/by-neighborhood/all';
+
+        const url = "/feedbacks/count/by-neighborhood/all";
         const response = await axiosRequest(api, url);
-        
+
         if (response.success) {
           setMappedFeedbacks(response.data);
+          console.log("Mapped Feedbacks:", response.data);
         } else {
-          setError(response.message || 'Failed to fetch mapped feedbacks');
+          setError(response.message || "Failed to fetch mapped feedbacks");
+          console.error(
+            "Error fetching mapped feedbacks:",
+            response.message || "Unknown error"
+          );
         }
       } catch (err) {
-        setError(err.message || 'An unexpected error occurred');
+        setError(err.message || "An unexpected error occurred");
       } finally {
         setLoading(false);
       }

@@ -60,7 +60,7 @@ export function addShapeLayer(map, feature, onDistrictClick) {
   // Create popup instance (reuse for better performance)
   const popup = new mapboxgl.Popup({
     closeButton: false,
-    closeOnClick: false
+    closeOnClick: false,
   });
 
   // Popup on hover
@@ -83,7 +83,7 @@ export function addShapeLayer(map, feature, onDistrictClick) {
             ${props.nom_barri || props.codi_barri || "Zona"}
           </h3>
           <p style="margin:4px 0 0; font-size:14px;">
-            Feedback: ${props.numFeedBack || 0}
+            Feedback: ${props.feedBackNum || 0}
           </p>
         </div>
         `

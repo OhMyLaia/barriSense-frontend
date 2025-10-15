@@ -1,17 +1,20 @@
 const FeedbackList = ({ neighborhoodName, feedback }) => {
+  console.log("FeedbackList props:", feedback);
   return (
     <div className="feedback-list">
       <header className="feedback-header">
         <h2>{neighborhoodName}</h2>
       </header>
-      
+
       <div className="feedback-container">
         {feedback.length === 0 ? (
-          <p className="no-feedback">No hay quejas registradas para este barrio.</p>
+          <p className="no-feedback">
+            No hay quejas registradas para este barrio.
+          </p>
         ) : (
           <ul className="feedback-list">
-            {feedback.slice(0, 20).map((complaint) => (
-              <li key={complaint.id} className="complaint-item">
+            {feedback.map((complaint, index) => (
+              <li key={index} className="complaint-item">
                 <p className="complaint-content">{complaint.content}</p>
               </li>
             ))}

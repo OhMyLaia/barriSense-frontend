@@ -5,7 +5,7 @@ import hoods from "../../services/geojson.json";
 import { addShapeLayer } from "./helpers/addShapeLayer";
 import { addFeedbackToHoods } from "./helpers/addFeedBackToHoods";
 import FeedbackList from "../FeedbackList";
-import { api } from '../../config/api-connection-config';
+import { api } from "../../config/api-connection-config";
 import { axiosRequest } from "../../config/axiosCrud";
 import { useMappedFeedbacks } from "../../hooks/useMappedFeedbacks";
 
@@ -18,44 +18,57 @@ const MapQuejas = () => {
   const { mappedFeedbacks } = useMappedFeedbacks();
 
   const fetchFeedBackByDistrict = async (districtId) => {
-    const url = `/feedbacks/${districtId}`
+    const url = `/feedbacks/by-neighborhood/${districtId}`;
     const { data } = await axiosRequest(api, url);
+    console.log("Feedbacks per hood", data);
     return data;
-  }
+  };
 
   useEffect(() => {
-    const feedbacks = fetchFeedBackByDistrict(selectedDistrict);
-    setFeedbackList(feedbacks);
-  }, [selectedDistrict])
+    if (!selectedDistrict) return;
+
+    const fetchData = async () => {
+      try {
+        const feedbacks = await fetchFeedBackByDistrict(selectedDistrict);
+        console.log(feedbacks);
+        setFeedbackList(feedbacks);
+      } catch (error) {
+        console.error("Error fetching feedbacks:", error);
+      }
+    };
+
+    fetchData();
+  }, [selectedDistrict]);
 
   const handleDistrictClick = (districtData) => {
     setSelectedDistrict(districtData);
   };
 
-
   useEffect(() => {
-    if (!mapContainerRef.current) return;
+    if (mappedFeedbacks.length > 0) {
+      if (!mapContainerRef.current) return;
 
-    mapboxgl.accessToken = import.meta.env.VITE_MAP_TOKEN;
+      mapboxgl.accessToken = import.meta.env.VITE_MAP_TOKEN;
 
-    const map = new mapboxgl.Map({
-      container: mapContainerRef.current,
-      style: "mapbox://styles/mapbox/streets-v11",
-      center: [2.1759, 41.39003],
-      zoom: 12,
-    });
+      const map = new mapboxgl.Map({
+        container: mapContainerRef.current,
+        style: "mapbox://styles/mapbox/streets-v11",
+        center: [2.1759, 41.39003],
+        zoom: 12,
+      });
 
-    const hoodsWithFeedbacks = addFeedbackToHoods(hoods, mappedFeedbacks);
+      const hoodsWithFeedbacks = addFeedbackToHoods(hoods, mappedFeedbacks);
 
-    map.on("load", () => {
-      hoodsWithFeedbacks.features.forEach((feature) =>
-        addShapeLayer(map, feature, handleDistrictClick)
-      );
-    });
+      map.on("load", () => {
+        hoodsWithFeedbacks.features.forEach((feature) =>
+          addShapeLayer(map, feature, handleDistrictClick)
+        );
+      });
 
-    mapRef.current = map;
-    return () => map.remove();
-  }, []);
+      mapRef.current = map;
+      return () => map.remove();
+    }
+  }, [mappedFeedbacks]);
 
   return (
     <div className="w-full h-full">
@@ -106,7 +119,6 @@ const MapQuejas = () => {
           />
         </div>
       )}
-
     </div>
   );
 };
