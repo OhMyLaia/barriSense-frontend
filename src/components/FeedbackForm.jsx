@@ -1,6 +1,7 @@
 import { useState } from "react";
 import HoodSelect from "./HoodSelect";
-import hoods from '../services/hoods.json'
+import hoods from '../services/hoods.json';
+import communication from '../assets/communication-purple-blue.svg'
 
 function FeedbackForm({ userId, onSubmit }) {
     const [selectedHood, setSelectedHood] = useState({ id: "", name: "" });
@@ -24,6 +25,9 @@ function FeedbackForm({ userId, onSubmit }) {
     return (
         <div className="feedback-form max-w-lg w-full mx-auto mt-10 p-6 bg-white mb-10 rounded-lg shadow-md">
             <h2 className="text-2xl font-semibold mb-4 text-gray-800">Nova queixa</h2>
+            <div className="flex justify-center m-3">
+                <img className="w-1/2 h-1/2" src={communication}></img>
+            </div>
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                 <div className="flex flex-col">
                     <HoodSelect onSelect={setSelectedHood} className="border border-gray-300 rounded py-1 shadow w-fit px-4" />

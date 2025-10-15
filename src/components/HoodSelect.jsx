@@ -16,7 +16,7 @@ export default function HoodSelect({ onSelect }) {
         <select 
             value={selectedHood.id} 
             onChange={handleChange}
-            className="select select-bordered w-full bg-white text-black max-w-xs"
+            className="select select-bordered w-full bg-blue-100 text-black max-w-xs"
         >
             <option value="" disabled>
                 Selecciona un barri
