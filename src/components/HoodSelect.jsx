@@ -12,8 +12,16 @@ export default function HoodSelect({ onSelect }) {
     };
 
     return (
-        <select value={selectedHood.id} onChange={handleChange}>
-            <option value="">-- Select a hood --</option>
+        // Added daisyUI classes for proper styling
+        <select 
+            value={selectedHood.id} 
+            onChange={handleChange}
+            className="select select-bordered w-full bg-white text-black max-w-xs"
+        >
+            <option value="" disabled>
+                Selecciona un barri
+            </option>
+
             {hoods.map((hood) => (
                 <option key={hood.codi_barri} value={hood.codi_barri}>
                     {hood.nom_barri}
