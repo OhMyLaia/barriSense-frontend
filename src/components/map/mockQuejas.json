@@ -1,0 +1,64 @@
+{
+  "quejas": [
+    {
+      "id": 1,
+      "barrio": "Ciutat Vella",
+      "contenido": "Grupos de turistas hacen mucho ruido por las noches en la plaza, no dejan descansar a los vecinos."
+    },
+    {
+      "id": 2,
+      "barrio": "Eixample",
+      "contenido": "Los turistas dejan basura en las calles después de hacer botellón, el barrio está muy sucio."
+    },
+    {
+      "id": 3,
+      "barrio": "Les Corts",
+      "contenido": "Hay demasiados pisos turísticos en mi edificio, los huéspedes no respetan las normas de convivencia."
+    },
+    {
+      "id": 4,
+      "barrio": "Ciutat Vella",
+      "contenido": "Los turistas ocupan todas las terrazas de los bares locales, los vecinos no podemos disfrutar de nuestro barrio."
+    },
+    {
+      "id": 5,
+      "barrio": "Eixample",
+      "contenido": "Grupos grandes de turistas bloquean las aceras con sus maletas, es difícil caminar por la calle."
+    },
+    {
+      "id": 6,
+      "barrio": "Ciutat Vella",
+      "contenido": "Los precios de los comercios han subido mucho por culpa del turismo, ya no podemos comprar en nuestro propio barrio."
+    },
+    {
+      "id": 7,
+      "barrio": "Les Corts",
+      "contenido": "Los apartamentos turísticos han convertido mi escalera en un hotel, hay ruido constante con las maletas."
+    },
+    {
+      "id": 8,
+      "barrio": "Eixample",
+      "contenido": "Los turistas no respetan las normas de reciclaje, tiran todo en cualquier contenedor."
+    },
+    {
+      "id": 9,
+      "barrio": "Ciutat Vella",
+      "contenido": "Hay demasiados tours guiados que bloquean las calles estrechas del barrio gótico."
+    },
+    {
+      "id": 10,
+      "barrio": "Les Corts",
+      "contenido": "Los turistas aparcan mal sus coches de alquiler y ocupan las plazas de parking de los residentes."
+    },
+    {
+      "id": 11,
+      "barrio": "Eixample",
+      "contenido": "Los bares han cambiado su oferta para turistas, ya no hay opciones para los vecinos del barrio."
+    },
+    {
+      "id": 12,
+      "barrio": "Ciutat Vella",
+      "contenido": "Los turistas hacen fotos constantemente en las puertas de las casas, no respetan la privacidad."
+    }
+  ]
+}
