@@ -1,11 +1,11 @@
-
+import MapPage from "../components/MapPage";
 
 function HomePage() {
-    return (
-        <div>
-            
-        </div>
-    )
+  return (
+    <div>
+      <MapPage />
+    </div>
+  );
 }
 
-export default HomePage
+export default HomePage;
