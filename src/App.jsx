@@ -22,6 +22,7 @@ export default function App() {
           <ScrollToHash />
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/hola" element={<HomePage />} />
             <Route path="/queixa" element={<FeedbackPage />} />
           </Routes>
         </main>

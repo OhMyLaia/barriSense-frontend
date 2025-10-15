@@ -1,6 +1,6 @@
 import React from 'react'
 import FeedbackForm from '../components/FeedbackForm';
-import { axiosCreate } from '../config/api-connection-service';
+import { axiosCreate } from '../config/axiosCrud'
 
 
 function FeedbackPage() {
@@ -22,13 +22,14 @@ function FeedbackPage() {
     };
 
     return (
-        <div className='bg-red-500'>
+        <div className='bg-red-500 w-full text-white m-50'>
+
             <FeedbackForm
                 userId={mockID}
                 onSubmit={submitForm}
             />
         </div>
-    )
+    );
 }
 
-export default FeedbackPage
+export default FeedbackPage;

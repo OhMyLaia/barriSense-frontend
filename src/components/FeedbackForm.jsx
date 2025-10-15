@@ -2,7 +2,7 @@ import { useState } from "react";
 import HoodSelect from "./HoodSelect";
 import hoods from '../services/hoods.json'
 
-export default function FeedbackForm({ userId, onSubmit }) {
+function FeedbackForm({ userId, onSubmit }) {
     const [selectedHood, setSelectedHood] = useState({ id: "", name: "" });
     const [content, setContent] = useState("");
 
@@ -39,3 +39,5 @@ export default function FeedbackForm({ userId, onSubmit }) {
         </div>
     );
 }
+
+export default FeedbackForm;
