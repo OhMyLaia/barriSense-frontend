@@ -39,9 +39,10 @@ function MobileNavbar({ isTop, logo }) {
           isOpen ? "scale-100 opacity-100 z-[9999]" : "scale-0"
         }`}
       >
-        <ul className="flex flex-col text-base pb-5 whitespace-normal gap-1 z-[9999]">
-          
-        </ul>
+        <span className="flex md:text-md xl:text-lg justify-center gap-3 lg:gap-4 text-black font-info">
+            <Link to={"/queixa"} className="rounded shadow px-4 hover:bg-blue-200 bg-white">Enviar queixa</Link>
+            <Link to={"/about"} className="rounded shadow px-4 hover:bg-blue-200 bg-white">About</Link>
+          </span>
       </div>
     </nav>
   );

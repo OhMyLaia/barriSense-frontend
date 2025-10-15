@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
-import ContactForm from "./components/ContactForm";
 import { Footer } from "./components/Footer";
 import ButtonGroup from "./components/ButtonGroup";
 import ScrollToHash from "./components/ScrollToHash";
@@ -16,7 +15,7 @@ export default function App() {
       <div className="flex flex-col min-h-screen">
         <Navbar />
         <ButtonGroup>
-          <Login />
+          {/* <Login /> */}
         </ButtonGroup>
         <main className="flex-grow">
           <ScrollToHash />

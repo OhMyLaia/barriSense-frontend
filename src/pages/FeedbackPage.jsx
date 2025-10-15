@@ -31,7 +31,7 @@ function FeedbackPage() {
                 justify-center
                 items-center
                 text-center
-                bg-white/40 rounded w-1/2
+                bg-transparent rounded w-1/2
                 text-white mt-50 m-2 px-20'>
                 <div>
                     <FeedbackForm

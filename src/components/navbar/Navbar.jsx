@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 import MobileNavbar from "./MobileNavbar";
 import DesktopNavbar from "./DesktopNavbar";
-import logo from "../../assets/logo-blue.png";
+import logo from "../../assets/SB-logo.svg";
 import { useAuth } from "../../modules/auth";
-import FeedbackModal from "../FeedbackForm";
 
 function Navbar() {
   const [isTopMobile, setIsTopMobile] = useState(true);
@@ -11,8 +10,6 @@ function Navbar() {
 
   const { user } = useAuth();
 
-  // const menuItems = ["Afegeix Queixa", "Contacta'ns", "Home"];
-  // if (user) menuItems.push("area-personal");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,17 +25,15 @@ function Navbar() {
 
   return (
     <>
-<MobileNavbar
-  isTop={isTopMobile}
-  // menuItems={menuItems}
-  logo={logo}
-/>
+      <MobileNavbar
+        isTop={isTopMobile}
+        logo={logo}
+      />
 
-<DesktopNavbar
-  isTop={isTopDesktop}
-  // menuItems={menuItems}
-  logo={logo}
-/>
+      <DesktopNavbar
+        isTop={isTopDesktop}
+        logo={logo}
+      />
     </>
   );
 }
