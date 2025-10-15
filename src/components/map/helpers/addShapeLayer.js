@@ -57,13 +57,25 @@ export function addShapeLayer(map, feature) {
     },
   });
 
-  // Popup on click
-  map.on("click", `${id}-fill`, (e) => {
+  // Create popup instance (reuse for better performance)
+  const popup = new mapboxgl.Popup({
+    closeButton: false,
+    closeOnClick: false
+  });
+
+  // Popup on hover
+  map.on("mouseenter", `${id}-fill`, (e) => {
     const props = e.features?.[0]?.properties;
     if (!props) return;
 
-    new mapboxgl.Popup()
-      .setLngLat(e.lngLat)
+    // Change cursor
+    map.getCanvas().style.cursor = "pointer";
+
+    // Copy coordinates and show popup
+    const coordinates = e.lngLat;
+    
+    popup
+      .setLngLat(coordinates)
       .setHTML(
         `
         <div style="padding:8px; font-family:sans-serif;">
@@ -74,17 +86,15 @@ export function addShapeLayer(map, feature) {
             Feedback: ${props.numFeedBack || 0}
           </p>
         </div>
-      `
+        `
       )
       .addTo(map);
   });
 
-  // Change cursor on hover
-  map.on("mouseenter", `${id}-fill`, () => {
-    map.getCanvas().style.cursor = "pointer";
-  });
+  // Remove popup on mouse leave
   map.on("mouseleave", `${id}-fill`, () => {
     map.getCanvas().style.cursor = "";
+    popup.remove();
   });
 
   console.info(`✅ Added layer for ${properties?.nom_barri || id}`);
