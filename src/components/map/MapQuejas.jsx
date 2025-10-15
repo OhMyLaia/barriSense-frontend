@@ -20,76 +20,47 @@ const MapQuejas = () => {
         });
 
         map.on('load', () => {
-            // Count complaints by district
-            const complaintCounts = mockQuejas.quejas.reduce((acc, queja) => {
-                acc[queja.barrio] = (acc[queja.barrio] || 0) + 1;
-                return acc;
-            }, {});
+            // Create triangle coordinates (longitude, latitude)
+            
 
-            map.addSource('barcelona-districts', {
-                url: 'mapbox://mapbox.boundaries-adm3-v3',
-                type: 'vector'
+            // Create GeoJSON for the triangle
+            const triangleGeoJSON = {
+                type: 'Feature',
+                geometry: {
+                    type: 'Polygon',
+                    coordinates: [triangleCoordinates]
+                },
+                properties: {
+                    name: 'Red Triangle'
+                }
+            };
+
+            // Add triangle source
+            map.addSource('triangle', {
+                type: 'geojson',
+                data: triangleGeoJSON
             });
 
+            // Add fill layer for the triangle
             map.addLayer({
-                id: 'districts-fill',
+                id: 'triangle-fill',
                 type: 'fill',
-                source: 'barcelona-districts',
-                'source-layer': 'boundaries_admin_3',
-                filter: ['==', ['get', 'iso_3166_1'], 'ES'], // Filter for Spain
+                source: 'triangle',
                 paint: {
-                    'fill-color': [
-                        'case',
-                        ['has', ['get', 'name'], ['literal', complaintCounts]],
-                        [
-                            'case',
-                            ['<=', ['get', ['get', 'name'], ['literal', complaintCounts]], 2], '#FEF3C7',
-                            ['<=', ['get', ['get', 'name'], ['literal', complaintCounts]], 4], '#FCD34D',
-                            ['<=', ['get', ['get', 'name'], ['literal', complaintCounts]], 6], '#F59E0B',
-                            '#DC2626'
-                        ],
-                        '#E5E7EB'
-                    ],
-                    'fill-opacity': 0.7
+                    'fill-color': '#DC2626', // Red color
+                    'fill-opacity': 0.6       // Translucent (60% opacity)
                 }
             });
 
-            // Add border layer for districts
+            // Add border layer for the triangle (optional)
             map.addLayer({
-                id: 'districts-border',
+                id: 'triangle-border',
                 type: 'line',
-                source: 'districts',
+                source: 'triangle',
                 paint: {
-                    'line-color': '#374151',
+                    'line-color': '#B91C1C', // Darker red for border
                     'line-width': 2
                 }
-            });
-
-            // Add click event to show district info
-            map.on('click', 'districts-fill', (e) => {
-                if (e.features && e.features[0]) {
-                    const feature = e.features[0];
-                    const properties = feature.properties;
-
-                    new mapboxgl.Popup()
-                        .setLngLat(e.lngLat)
-                        .setHTML(`
-                            <div class="p-3">
-                                <h3 class="font-bold text-lg">${properties?.name}</h3>
-                                <p class="text-sm">Quejas: ${properties?.complaints}</p>
-                            </div>
-                        `)
-                        .addTo(map);
-                }
-            });
-
-            // Change cursor on hover
-            map.on('mouseenter', 'districts-fill', () => {
-                map.getCanvas().style.cursor = 'pointer';
-            });
-
-            map.on('mouseleave', 'districts-fill', () => {
-                map.getCanvas().style.cursor = '';
             });
         });
 
