@@ -11,8 +11,8 @@ function Navbar() {
 
   const { user } = useAuth();
 
-  const menuItems = ["Afegeix Queixa", "Contacta'ns", "Home"];
-  if (user) menuItems.push("area-personal");
+  // const menuItems = ["Afegeix Queixa", "Contacta'ns", "Home"];
+  // if (user) menuItems.push("area-personal");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,13 +30,13 @@ function Navbar() {
     <>
 <MobileNavbar
   isTop={isTopMobile}
-  menuItems={menuItems}
+  // menuItems={menuItems}
   logo={logo}
 />
 
 <DesktopNavbar
   isTop={isTopDesktop}
-  menuItems={menuItems}
+  // menuItems={menuItems}
   logo={logo}
 />
     </>

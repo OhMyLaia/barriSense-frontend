@@ -16,25 +16,10 @@ function DesktopNavbar({ isTop, menuItems, logo }) {
           </Link>
         </div>
         <div className="flex-1 flex items-center justify-center ">
-          <ul className="flex md:text-md xl:text-lg justify-center gap-3 lg:gap-4 text-white font-info">
-            {menuItems.map((path, idx) => (
-              <li
-                key={idx}
-                className="basis-0 rounded-sm flex-1 hover:shadow-custom active:text-shadow-none active:shadow-none relative"
-                style={{ color: "black" }}
-              >
-                  <Link
-                    to={`/${path}`}
-                    className="w-full h-full rounded-sm flex items-center text-center px-2 whitespace-nowrap p-4"
-                    style={{
-                      backgroundColor: "white",
-                    }}
-                  >
-                    {capitalizeWords(path.replaceAll("-", " "))}
-                  </Link>
-              </li>
-            ))}
-          </ul>
+          <span className="flex md:text-md xl:text-lg justify-center gap-3 lg:gap-4 text-black font-info">
+            <Link to={"/queixa"} className="rounded shadow px-4 hover:bg-blue-200">Enviar queixa</Link>
+            <Link to={"/about"} className="rounded shadow px-4 hover:bg-blue-200">About</Link>
+          </span>
         </div>
       </div>
     </nav>
