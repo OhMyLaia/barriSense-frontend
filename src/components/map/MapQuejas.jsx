@@ -1,61 +1,37 @@
 import { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import feedbacks from "../../services/geojson.json";
+import hoods from "../../services/geojson.json";
 import { addShapeLayer } from "./helpers/addShapeLayer";
 import { addFeedbackToHoods } from "./helpers/addFeedBackToHoods";
 import FeedbackList from "../FeedbackList";
-// import api from '../../config/api-connection-config';
-// import { axiosRequest } from "../../config/axiosCrud";
+import { api } from '../../config/api-connection-config';
+import { axiosRequest } from "../../config/axiosCrud";
+import { useMappedFeedbacks } from "../../hooks/useMappedFeedbacks";
 
 const MapQuejas = () => {
   const mapContainerRef = useRef(null);
   const mapRef = useRef(null);
   const [selectedDistrict, setSelectedDistrict] = useState(null);
-  const [districtFeedbacks, setDistrictFeedbacks] = useState([]);
   const [feedbackList, setFeedbackList] = useState([]);
 
+  const { mappedFeedbacks } = useMappedFeedbacks();
 
+  const fetchFeedBackByDistrict = async (districtId) => {
+    const url = `/feedbacks/${districtId}`
+    const { data } = await axiosRequest(api, url);
+    return data;
+  }
 
-  // Mock function to get feedbacks for a district
-  const getFeedbacksForDistrict = (districtCode) => {
-    // Aquí podrías hacer una llamada a tu API real
-    // Por ahora, generamos datos de ejemplo
-    const mockFeedbacks = [];
-    const feedbackCount = Math.floor(Math.random() * 5) + 1;
-    
-    for (let i = 0; i < feedbackCount; i++) {
-      mockFeedbacks.push({
-        id: `${districtCode}-${i}`,
-        content: `Queja ${i + 1} del distrito ${districtCode}: ${getRandomComplaint()}`,
-        date: new Date().toLocaleDateString(),
-        status: "pending"
-      });
-    }
-    
-    return mockFeedbacks;
-  };
-
-  const getRandomComplaint = () => {
-    const complaints = [
-      "Ruido excesivo en las noches",
-      "Basura acumulada en las calles",
-      "Falta de iluminación pública",
-      "Problemas con el transporte público",
-      "Espacios verdes en mal estado",
-      "Tráfico intenso en horas pico"
-    ];
-    return complaints[Math.floor(Math.random() * complaints.length)];
-  };
-
-useEffect(()=>{
-  
-})
+  useEffect(() => {
+    const feedbacks = fetchFeedBackByDistrict(selectedDistrict);
+    setFeedbackList(feedbacks);
+  }, [selectedDistrict])
 
   const handleDistrictClick = (districtData) => {
     setSelectedDistrict(districtData);
   };
-  
+
 
   useEffect(() => {
     if (!mapContainerRef.current) return;
@@ -69,10 +45,10 @@ useEffect(()=>{
       zoom: 12,
     });
 
-    const feedbacksWithFeedbacks = addFeedbackToHoods(feedbacks);
+    const hoodsWithFeedbacks = addFeedbackToHoods(hoods, mappedFeedbacks);
 
     map.on("load", () => {
-      feedbacksWithFeedbacks.features.forEach((feature) =>
+      hoodsWithFeedbacks.features.forEach((feature) =>
         addShapeLayer(map, feature, handleDistrictClick)
       );
     });
@@ -126,11 +102,11 @@ useEffect(()=>{
           </div>
           <FeedbackList
             neighborhoodName={selectedDistrict.neighborhoodName}
-            feedback={districtFeedbacks}
+            feedback={feedbackList}
           />
         </div>
       )}
-      
+
     </div>
   );
 };
