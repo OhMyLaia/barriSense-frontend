@@ -5,12 +5,17 @@ import feedbacks from "../../services/geojson.json";
 import { addShapeLayer } from "./helpers/addShapeLayer";
 import { addFeedbackToHoods } from "./helpers/addFeedBackToHoods";
 import FeedbackList from "../FeedbackList";
+// import api from '../../config/api-connection-config';
+// import { axiosRequest } from "../../config/axiosCrud";
 
 const MapQuejas = () => {
   const mapContainerRef = useRef(null);
   const mapRef = useRef(null);
   const [selectedDistrict, setSelectedDistrict] = useState(null);
   const [districtFeedbacks, setDistrictFeedbacks] = useState([]);
+  const [feedbackList, setFeedbackList] = useState([]);
+
+
 
   // Mock function to get feedbacks for a district
   const getFeedbacksForDistrict = (districtCode) => {
@@ -43,11 +48,12 @@ const MapQuejas = () => {
     return complaints[Math.floor(Math.random() * complaints.length)];
   };
 
+useEffect(()=>{
+  
+})
+
   const handleDistrictClick = (districtData) => {
     setSelectedDistrict(districtData);
-    // Obtener feedbacks para este distrito
-    const feedbacks = getFeedbacksForDistrict(districtData.districtCode);
-    setDistrictFeedbacks(feedbacks);
   };
   
 

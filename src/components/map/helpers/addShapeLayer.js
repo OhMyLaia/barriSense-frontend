@@ -105,11 +105,7 @@ export function addShapeLayer(map, feature, onDistrictClick) {
     console.log("🔍 District clicked:", props); // Add this debug log
 
     // Call the callback function with district data
-    onDistrictClick({
-      neighborhoodName: props.nom_barri || "Zona Desconocida",
-      neighborhoodId: props.codi_barri || "Id desconocido",
-      feedbackCount: props.feedBackNum || 0,
-    });
+    onDistrictClick(props.codi_barri);
   });
   console.info(`✅ Added layer for ${properties?.nom_barri || id}`);
 }
