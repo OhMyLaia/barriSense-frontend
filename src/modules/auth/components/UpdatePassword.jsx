@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { supabase } from "../../shared/supabaseClient";
 
 const UpdatePassword = () => {
   const [password, setPassword] = useState("");
@@ -30,7 +29,7 @@ const UpdatePassword = () => {
     }
 
     setLoading(true);
-    const { error } = await supabase.auth.updateUser({ password });
+    /*  const { error } = await supabase.auth.updateUser({ password }); */
     setLoading(false);
 
     if (error) {

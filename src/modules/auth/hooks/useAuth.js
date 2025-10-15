@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-import { supabase } from "../../../repositories/supabaseImplementation/supabaseClient.js";
 
 export function useAuth() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+  /* useEffect(() => {
     const getUser = async () => {
       const {
         data: { user },
@@ -25,7 +24,7 @@ export function useAuth() {
     return () => {
       listener.subscription.unsubscribe();
     };
-  }, []);
+  }, []); */
 
   return { user, loading };
 }

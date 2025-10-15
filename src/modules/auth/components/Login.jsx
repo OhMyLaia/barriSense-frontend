@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { supabase } from "../../../repositories/supabaseImplementation/supabaseClient.js";
+import { useNavigate } from "react-router-dom";
 import "../auth.css";
 
 const Login = () => {
@@ -16,15 +16,16 @@ const Login = () => {
   const [confirmationSent, setConfirmationSent] = useState(false);
   const [recoverSent, setRecoverSent] = useState(false);
   const [user, setUser] = useState(null);
+  const navigate = useNavigate();
 
-  useEffect(() => {
+  /* useEffect(() => {
     supabase.auth.getUser().then(({ data }) => setUser(data.user));
     const { data: listener } = supabase.auth.onAuthStateChange((_, session) => {
       setUser(session?.user ?? null);
     });
     return () => listener.subscription.unsubscribe();
   }, []);
-
+ */
   const resetForm = () => {
     setUsername("");
     setEmail("");
@@ -41,10 +42,10 @@ const Login = () => {
 
   const handleLogin = async () => {
     setLoading(true);
-    const { error } = await supabase.auth.signInWithPassword({
+    /* const { error } = await supabase.auth.signInWithPassword({
       email,
       password,
-    });
+    }); */
     setLoading(false);
     if (error) setError(error.message);
     else resetForm();
@@ -66,7 +67,7 @@ const Login = () => {
 
     setLoading(true);
 
-    const { data, error } = await supabase.auth.signUp({
+    /* const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
@@ -74,7 +75,7 @@ const Login = () => {
           username: username.trim(),
         },
       },
-    });
+    }); */
 
     setLoading(false);
 
@@ -93,9 +94,9 @@ const Login = () => {
       return;
     }
     setLoading(true);
-    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+    /* const { error } = await supabase.auth.resetPasswordForEmail(email, {
       redirectTo: `${import.meta.env.VITE_BASE_URL}/update-password`,
-    });
+    }); */
     setLoading(false);
     if (error) {
       setError(error.message);
@@ -105,9 +106,10 @@ const Login = () => {
   };
 
   const handleLogout = async () => {
-    await supabase.auth.signOut();
+    /*  await supabase.auth.signOut(); */
     resetForm();
-    setUser(null); // Redirect to home after logout
+    setUser(null);
+    navigate("/"); // Redirect to home after logout
   };
 
   return (
