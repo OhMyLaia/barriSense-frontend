@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
-import ContactForm from "./components/ContactForm";
 import { Footer } from "./components/Footer";
 import ButtonGroup from "./components/ButtonGroup";
 import ScrollToHash from "./components/ScrollToHash";
 import { Login, UpdatePassword, useAuth } from "./modules/auth";
 import HomePage from "./pages/HomePage";
 import FeedbackPage from "./pages/FeedbackPage";
+import AboutPage from "./pages/AboutPage";
 
 export default function App() {
   const { user } = useAuth();
@@ -22,6 +22,7 @@ export default function App() {
           <ScrollToHash />
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<AboutPage />} />
             <Route path="/queixa" element={<FeedbackPage />} />
           </Routes>
         </main>

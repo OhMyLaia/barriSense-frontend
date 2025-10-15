@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 
-function MobileNavbar({ isTop, menuItems, logo }) {
+function MobileNavbar({ isTop, logo }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -39,22 +39,10 @@ function MobileNavbar({ isTop, menuItems, logo }) {
           isOpen ? "scale-100 opacity-100 z-[9999]" : "scale-0"
         }`}
       >
-        <ul className="flex flex-col text-base pb-5 whitespace-normal gap-1 z-[9999]">
-          {menuItems.map((path, idx) => (
-            <li
-              key={idx}
-              className="relative p-2 bg-white active:shadow-none"
-            >
-                <Link
-                  to={`/${path}`}
-                  className="flex justify-center items-center text-center hover:text-white"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {path.replaceAll("-", " ")}
-                </Link>
-            </li>
-          ))}
-        </ul>
+        <span className="flex md:text-md xl:text-lg justify-center gap-3 lg:gap-4 text-black font-info">
+            <Link to={"/queixa"} className="rounded shadow px-4 hover:bg-blue-200 bg-white">Enviar queixa</Link>
+            <Link to={"/about"} className="rounded shadow px-4 hover:bg-blue-200 bg-white">About</Link>
+          </span>
       </div>
     </nav>
   );

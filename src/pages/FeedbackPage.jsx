@@ -1,6 +1,7 @@
 import React from 'react'
 import FeedbackForm from '../components/FeedbackForm';
-import { axiosCreate } from '../config/api-connection-service';
+import { axiosCreate } from '../config/axiosCrud';
+import { api } from '../config/api-connection-config';
 
 
 function FeedbackPage() {
@@ -9,7 +10,7 @@ function FeedbackPage() {
 
     const submitForm = async (feedback) => {
         try {
-            const data = await axiosCreate(axiosInstance, "/api/feedbacks/post", feedback);
+            const data = await axiosCreate(api, "/api/feedbacks/post", feedback);
             if (data) {
                 console.log("Feedback submitted successfully:", data);
                 // Optionally show a success message or redirect
@@ -22,13 +23,25 @@ function FeedbackPage() {
     };
 
     return (
-        <div className='bg-red-500'>
-            <FeedbackForm
-                userId={mockID}
-                onSubmit={submitForm}
-            />
+        <div className='min-h-screen flex items-center justify-center bg-gray-200'>
+
+            <div className='
+                flex
+                flex-col
+                justify-center
+                items-center
+                text-center
+                bg-transparent rounded w-1/2
+                text-white mt-50 m-2 px-20'>
+                <div>
+                    <FeedbackForm
+                        userId={mockID}
+                        onSubmit={submitForm}
+                    />
+                </div>
+            </div>
         </div>
-    )
+    );
 }
 
-export default FeedbackPage
+export default FeedbackPage;

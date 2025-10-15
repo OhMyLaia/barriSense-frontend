@@ -43,7 +43,7 @@ export function Footer() {
 
       {/* Copyright */}
       <div className="text-center text-xs mt-4 mb-2 text-gray-500">
-        &copy; {new Date().getFullYear()} El Taller Swing. Tots els drets
+        &copy; {new Date().getFullYear()} Barri Sense. Tots els drets
         reservats.
       </div>
     </footer>
