@@ -3,6 +3,7 @@ import MobileNavbar from "./MobileNavbar";
 import DesktopNavbar from "./DesktopNavbar";
 import logo from "../../assets/logo-blue.png";
 import { useAuth } from "../../modules/auth";
+import FeedbackModal from "../FeedbackModal";
 
 function Navbar() {
   const [isTopMobile, setIsTopMobile] = useState(true);
@@ -24,10 +25,20 @@ function Navbar() {
     };
   }, []);
 
+
   return (
     <>
-      <MobileNavbar isTop={isTopMobile} menuItems={menuItems} logo={logo} />
-      <DesktopNavbar isTop={isTopDesktop} menuItems={menuItems} logo={logo} />
+<MobileNavbar
+  isTop={isTopMobile}
+  menuItems={menuItems}
+  logo={logo}
+/>
+
+<DesktopNavbar
+  isTop={isTopDesktop}
+  menuItems={menuItems}
+  logo={logo}
+/>
     </>
   );
 }

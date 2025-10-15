@@ -22,7 +22,7 @@ export default function App() {
           <ScrollToHash />
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/" element={<FeedbackPage />} />
+            <Route path="/afegir-queixa" element={<FeedbackPage />} />
             <Route path="/contacte" element={<ContactForm />} />
             <Route path="/update-password" element={<UpdatePassword />} />
           </Routes>
